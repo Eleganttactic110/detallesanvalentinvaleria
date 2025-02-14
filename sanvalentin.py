@@ -1,0 +1,141 @@
+import webbrowser
+import os
+
+# Contenido HTML con interactividad para San Valentín
+html = """
+<!DOCTYPE html>
+<html>
+<head>
+    <title>San Valentín</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+        body { text-align: center; font-family: 'Dancing Script', cursive; margin: 0; padding: 20px; background-color: #000000; color: #FFFFFF; }
+        .menu, .content { display: none; }
+        .initial { cursor: pointer; margin-top: 50px; max-width: 200px; }
+        .menu img { cursor: pointer; margin: 20px; max-width: 150px; }
+        .content img { max-width: 500px; }
+        .back-button { position: absolute; top: 20px; left: 120px; padding: 10px 20px; background-color: #ff6666; color: white; border: none; cursor: pointer; }
+        .back-button:hover { background-color: #ff3333; }
+        .roses { margin: 20px 0; max-width: 150px; } /* Tamaño reducido de la imagen de rosas */
+        .acrostic-container { display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 20px; } /* Flexbox para alinear */
+        .acrostic { font-size: 1.8em; text-align: center; } /* Alineado centrado */
+        .message { margin-top: 20px; font-size: 1.5em; line-height: 1.5em; } /* Letras más grandes y separación entre líneas */
+        .corner-decoration { position: fixed; width: 100px; } /* Agrandado a 100px */
+        .top-left { top: 0; left: 0; }
+        .top-right { top: 0; right: 0; }
+        .bottom-left { bottom: 0; left: 0; }
+        .bottom-right { bottom: 0; right: 0; }
+        .letter { font-size: 1.6em; } /* Agrandar letras de la carta */
+    </style>
+    <script>
+        function showMenu() {
+            document.getElementById('initial').style.display = 'none';
+            document.getElementById('menu').style.display = 'block';
+        }
+
+        function showContent(contentId) {
+            document.getElementById('menu').style.display = 'none';
+            var contents = document.getElementsByClassName('content');
+            for (var i = 0; i < contents.length; i++) {
+                contents[i].style.display = 'none';
+            }
+            document.getElementById(contentId).style.display = 'block';
+        }
+
+        function goBack() {
+            var contents = document.getElementsByClassName('content');
+            for (var i = 0; i < contents.length; i++) {
+                contents[i].style.display = 'none';
+            }
+            document.getElementById('menu').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <img src="https://media.tenor.com/keDRZSftqacAAAAM/sonia-felix-lan-valentin.gif" class="corner-decoration top-left">
+    <img src="https://media.tenor.com/keDRZSftqacAAAAM/sonia-felix-lan-valentin.gif" class="corner-decoration top-right">
+    <img src="https://media.tenor.com/keDRZSftqacAAAAM/sonia-felix-lan-valentin.gif" class="corner-decoration bottom-left">
+    <img src="https://media.tenor.com/keDRZSftqacAAAAM/sonia-felix-lan-valentin.gif" class="corner-decoration bottom-right">
+
+    <h1>Feliz San Valentín 💖</h1>
+    <p class="message">Este detalle es para ti. Espero sea de tu agrado, eres la mujer mas hermosa y maravillosa del mundo. Haz clic en el corazon para comenzar.</p>
+    
+    <!-- Imagen inicial -->
+    <img id="initial" class="initial" src="https://i.pinimg.com/originals/e6/7e/5d/e67e5d057fcda25f47f860c7be150e2f.gif" alt="Haz clic aquí" onclick="showMenu()">
+    
+    <p style="font-size: 1.5em;">🌹Desde el fondo de mi corazon espero sea de su agrado este pequeño detalle y sobre todo le pido a Dios por tu vida🌹</p>
+    <p style="font-size: 1.5em;">🌹Que Dios siempre la bendiga a usted y su familia en todo, es maravillosa y se mrece lo mejor🌹</p>
+
+    <!-- Menú de opciones -->
+    <div id="menu" class="menu">
+        <h1>Elige una opción:</h1>
+        <p class="message">Espero algún día poder decirte lo importante que eres para mí en persona y lo maravillosa que eres🌹. Me encantaría invitarte a salir y disfrutar de tu compañía😍. Aquí tienes tres opciones con todo el cariño del mundo ☺. HAZ CLICK SOBRE LAS IMAGENES PARA VER EL CONTENIDO</p>
+        <p class="message">📧La PRIMERA IMAGEN del SOBRE es una carta para ti📧</p>
+        <p class="message">❤🎶La SEGUNDA IMAGEN del CORAZON CON AUDIFONOS es una canción que te la dedico❤🎶</p>
+        <p class="message">🌹La TERCERA IMAGEN de la ROSA son una flores y un detalle sorpresa🌹</p>
+        <img src="https://i.pinimg.com/736x/b3/4d/34/b34d342d4fd2082809e0d221c82dcef6.jpg" alt="Carta" onclick="showContent('content1')">
+        <img src="https://media.istockphoto.com/id/1204367764/es/vector/ilustraci%C3%B3n-vectorial-de-personajes-de-coraz%C3%B3n-rojo-feliz-escuchando-m%C3%BAsica-en-auriculares.jpg?s=612x612&w=0&k=20&c=4ERXsSomQ9U5rgcSY9XnVbytacWRLOzJX7Kvp-znpnQ=" alt="Canción" onclick="showContent('content2')">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm2eMCnTU3rjWWuufh1abXHQqYTyDgsFPLXA&s" alt="Rosas" onclick="showContent('content3')">
+    </div>
+    
+    <!-- Contenido 1: Carta -->
+    <div id="content1" class="content">
+        <button class="back-button" onclick="goBack()">Regresar</button>
+        <h1>💌Carta💌</h1>
+        <p class="letter">Querida Señorita Valeria🌹,</p>
+        <p class="letter">Espero que este pequeño detalle alegre tu dia o noche y mis palabras y actos puedan llegar a tu corazón, asi mismo espero pueda sacarte una sonrisa que alegre tu vida al menos por el momento.😁🌹</p>
+        <p class="letter">Valeria, nunca pense conocer a una mujer tan maravillosa como tu en mi vida y asi mismo me alegro el poder conocerte y suspirar por escuchar tu voz, siento que eres una mujer maravillosa y que estas llena de cualidades y actitudes admirables. Sineto que desde que te conoci poco a poco me has permitido que te conozca mas y enserio te agradezco por tu tiempo y permitirme conocerte, es importante reslatar que a pesar que no nos conocemos en persona con tu carisma y amabilidad me has demostrado tu grandiosa personalidad y claro tu belleza que ilumina cualquier lugar en el que estes, tu iluminas mi vida y me das fuerzas para nunca rendirme, un mensaje tuyo es muy bonito y significativo para mi. Gracias bonita por aparecer en mi vida, conocerte es un regalo maravilloso y bueno debo ser honesto en este poco tiempo me enamore de ti y por eso queria preguntarte y pedirte: </p>
+        <p class="letter">🌹"Podrias darme una oportunidad de conquistarte, asi mismo de demostrarte que sin importar la distancia y diferencias podemos conocernos e inondicionalmente amarte y respetarte como te lo mereces, podrias darme esta oportunidad? Por favor"🌹</p>
+        <p class="letter">Ya sea que aceptes o no, quiero que sepas que para mi eres muy importante y dia con dia me fui enamorando de ti y quiero que estes bien y seas feliz sobre todo mis sentimientos por ti son reales y quiero que sepas que para mi eres la mujer mas maravillosa que existe, porfa piensalo bonita.</p>
+        <p class="letter">Con cariño, quien te quiere, admira y ama. Anthony.R</p>
+        <img src="https://cdn.memegenerator.es/descargar/2077353" alt="Decoración">
+    </div>
+    
+    <!-- Contenido 2: Cancion -->
+    <div id="content2" class="content">
+        <button class="back-button" onclick="goBack()">Regresar</button>
+        <h1>❤🎶Cancion❤🎶</h1>
+        <p class="letter">Bonita te dedico estas tres canciones que me recuerdan a ti, disculpa si no son los ritmos que capaz te gustan pero te pido leas la siguiente descripción de cada canción y asi mismo si es posible las abras en una pestaña diferente por favor, gracias</p>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT31uK2uePjjSwP6XIZpd0zDZ7triTtNJMmJw&s" alt="Imagen relacionada con la canción">
+        <p class="message">1.<a href="https://www.youtube.com/watch?v=r08d9XEik3s">Enlace a la canción</a></p>
+        <p class="message">2.<a href="https://www.youtube.com/watch?v=bx9VFLCbWYw">Enlace a la canción</a></p>
+        <p class="message">3.<a href="https://www.youtube.com/watch?v=bOzBA41J83A">Enlace a la canción</a></p>
+        <p class="message">(1). Esta canción te la dedico porque eres única y siento que por fin encontré a la mujer más maravillosa del mundo después de tanto tiempo. Una mujer por la que vale la pena esperar y darle todo el amor y cariño que se merecer y ahcerla feliz incondicionalmente, apoyandola en las buenas y en las malas, asi mismo se que ya te la dedique anteriormente pero siento que es la cancion que mejor describe lo mucho que te amo</p>
+        <p class="message">(2). Esta otra canción es de cierta forma como una cerenata y bueno me hace recordarte por que para mi eres mi vida y mi sol que con una sonrisa tuya ilumina mi alrededor.</p>
+        <p class="message">(3). Esta canción es por si talvez no deseas darme una oportunidad por diversoso motivos o circunstancias, pero quiero que sepas que te esperare y se que algun dia volveras o al menos soñaré con ello, espero que no sea este el caso pero de todas formas te la dedico</p>
+        <p class="message">Espero las canciones sean de su agrado</p>
+        <p class="message">Disfrutelas!!</p>
+    </div>
+    
+    <!-- Contenido 3: Rosas y Acróstico -->
+    <div id="content3" class="content">
+        <button class="back-button" onclick="goBack()">Regresar</button>
+        <h1>🌹Rosas🌹</h1>
+        <p class="message">Hice un pequeño acrostico con tu nombre, trate de describirte lo mejor posible, pero a una mujer con tantas cualidades es imposible describirla solo con palabras❤. Igualmente disculpame por tomar una foto tuya pero debia hacerlo para con tu belleza y personalidad plasmar en este detalle.</p>
+        <div class="acrostic-container">
+            <img src="https://i.pinimg.com/originals/3e/de/b3/3edeb39869d749cef1fbe1025347d2e0.gif" alt="Rosas" class="roses">
+            <div class="acrostic">
+                <p>V:ivaz y encantadora, llena de vida todo lugar</p>
+                <p>A:mable y siempre atenta, tiene un brillo único y singular</p>
+                <p>L:uminosa en todos los sentidos</p>
+                <p>E:ncantadora y juiciosa, acelera mis latidos</p>
+                <p>R:adiante y encantadora, ilumina mi vida con su sonrisa</p>
+                <p>I:ncreíble y única, como una cálida brisa</p>
+                <p>A:legre y siempre dispuesta a regalar sonrisas</p>
+            </div>
+
+            <img src="mi-imagen.jpg" alt="Decoración" class="roses" style="width: 250px; height: 350px;"> <!-- Imagen guardada localmente -->
+        </div>
+    </div>
+</body>
+</html>
+"""
+
+# Guarda el contenido en un archivo HTML con codificación UTF-8
+with open("detalle_san_valentin.html", "w", encoding="utf-8") as file:
+    file.write(html)
+
+# Abre el archivo HTML en una nueva pestaña del navegador
+webbrowser.open("file://" + os.path.realpath("detalle_san_valentin.html"))
+
+
